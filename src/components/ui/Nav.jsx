@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { gsap } from 'gsap'
-import useStore from '@store/useStore'
-import TransitionLink from '@shared/TransitionLink'
+import useStore from '../../store/useStore'
+import TransitionLink from '../shared/TransitionLink'
 import styles from './Nav.module.scss'
 
 export default function Nav() {

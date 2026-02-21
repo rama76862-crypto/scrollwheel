@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import useStore from '@store/useStore'
+import useStore from '../../store/useStore'
 import styles from './PageTransition.module.scss'
 
 export default function PageTransition() {

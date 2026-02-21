@@ -1,5 +1,5 @@
 import React from 'react'
-import useTransition from '@hooks/useTransition'
+import useTransition from '../../hooks/useTransition'
 
 /**
  * TransitionLink Component

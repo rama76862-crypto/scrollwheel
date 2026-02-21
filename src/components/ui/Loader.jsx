@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
-import useStore from '@store/useStore'
+import useStore from '../../store/useStore'
 import styles from './Loader.module.scss'
 
 export default function Loader() {
@@ -12,6 +12,7 @@ export default function Loader() {
     const panelBottom = useRef()
 
     const progress = useStore((s) => s.progress)
+    const loaded = useStore((s) => s.loaded)
     const setLoaded = useStore((s) => s.setLoaded)
     const [isVisible, setIsVisible] = useState(true)
 
@@ -38,7 +39,7 @@ export default function Loader() {
             gsap.to(logo.current, { opacity: 1, duration: 0.8 })
         }
 
-        if (progress === 100) {
+        if (progress === 100 || loaded) {
             const tl = gsap.timeline({
                 delay: 0.2,
             })
@@ -60,7 +61,7 @@ export default function Loader() {
                 ease: 'expo.inOut'
             }, 'wipe')
 
-            // Trigger Hero entrance 200ms before panels complete (duration is 1.0, so at 0.8)
+            // Ensure store state is updated if we hit 100 first
             tl.add(() => {
                 setLoaded(true)
             }, 'wipe+=0.8')
@@ -70,7 +71,7 @@ export default function Loader() {
                 setIsVisible(false)
             }, 'wipe+=1.0')
         }
-    }, [progress, setLoaded])
+    }, [progress, loaded, setLoaded])
 
     if (!isVisible) return null
 

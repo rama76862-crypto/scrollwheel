@@ -43,6 +43,8 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0)
 
+console.log("RAMA: main.jsx loaded, rendering root...");
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <HelmetProvider>

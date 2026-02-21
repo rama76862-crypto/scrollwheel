@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { gsap } from 'gsap'
 import useStore from '../../store/useStore'
-import TransitionLink from '../shared/TransitionLink'
 import styles from './Nav.module.scss'
 
 export default function Nav() {
@@ -21,37 +20,48 @@ export default function Nav() {
     }, [loaded])
 
     const links = [
-        { label: 'WORK', path: '/' },
-        { label: 'ABOUT', path: '/about' },
-        { label: 'CONTACT', path: '/contact' }
+        { label: 'WORK', hash: '#work' },
+        { label: 'ABOUT', hash: '#about' },
+        { label: 'CONTACT', hash: '#contact' }
     ]
+
+    const scrollToHash = (hash) => (e) => {
+        e.preventDefault()
+        const el = document.querySelector(hash)
+        if (!el) return
+        if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+            window.lenis.scrollTo(el, { offset: -80 })
+        } else {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+    }
 
     return (
         <nav ref={navRef} className={styles.nav}>
-            <TransitionLink to="/" className={styles.logo}>
+            <a href="#hero" className={styles.logo} onClick={scrollToHash('#hero')}>
                 <div
                     onMouseEnter={() => setCursorType('view')}
                     onMouseLeave={() => setCursorType('default')}
                 >
                     LUSION
                 </div>
-            </TransitionLink>
+            </a>
 
             <div className={styles.links}>
                 {links.map((link) => (
-                    <TransitionLink
-                        key={link.path}
-                        to={link.path}
-                        className={`${styles.link} ${location.pathname === link.path ? styles.isActive : ''}`}
+                    <a
+                        key={link.hash}
+                        href={link.hash}
+                        className={styles.link}
+                        onClick={scrollToHash(link.hash)}
                     >
                         <div
                             onMouseEnter={() => setCursorType('view')}
                             onMouseLeave={() => setCursorType('default')}
                         >
                             {link.label}
-                            {location.pathname === link.path && <span className={styles.dot} />}
                         </div>
-                    </TransitionLink>
+                    </a>
                 ))}
             </div>
         </nav>

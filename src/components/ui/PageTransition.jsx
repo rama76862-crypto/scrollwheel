@@ -10,6 +10,15 @@ export default function PageTransition() {
     const setTransitioning = useStore((s) => s.setTransitioning)
 
     useEffect(() => {
+        const root = document.documentElement
+        if (isTransitioning) {
+            root.classList.add('is-transitioning')
+        } else {
+            root.classList.remove('is-transitioning')
+        }
+    }, [isTransitioning])
+
+    useEffect(() => {
         const tl = gsap.timeline()
 
         if (isTransitioning) {
@@ -50,7 +59,10 @@ export default function PageTransition() {
     }, [isTransitioning])
 
     return (
-        <div className={styles.transition}>
+        <div
+            className={styles.transition}
+            style={{ visibility: isTransitioning ? 'visible' : 'hidden' }}
+        >
             <div ref={panel2} className={styles.accentPanel} />
             <div ref={panel1} className={styles.bgPanel} />
         </div>

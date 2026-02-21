@@ -7,7 +7,15 @@ import styles from './MagneticButton.module.scss'
  * Magnetic Button
  * Disables magnetic translation on touch devices to prevent interaction jank.
  */
-export default function MagneticButton({ children, className }) {
+export default function MagneticButton({
+    children,
+    className = '',
+    href,
+    onClick,
+    target,
+    rel,
+    ariaLabel,
+}) {
     const el = useRef()
     const inner = useRef()
     const setCursorType = useStore((s) => s.setCursorType)
@@ -57,14 +65,21 @@ export default function MagneticButton({ children, className }) {
         }
     }, [isTouch])
 
+    const Tag = href ? 'a' : 'button'
+
     return (
-        <button
+        <Tag
             ref={el}
             className={`${styles.button} ${className}`}
+            href={href}
+            onClick={onClick}
+            target={href ? target : undefined}
+            rel={href ? rel : undefined}
+            aria-label={ariaLabel}
             onMouseEnter={() => !isTouch && setCursorType('view')}
             onMouseLeave={() => !isTouch && setCursorType('default')}
         >
             <span ref={inner} className={styles.inner}>{children}</span>
-        </button>
+        </Tag>
     )
 }

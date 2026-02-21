@@ -1,22 +1,19 @@
-import React, { useLayoutEffect, useRef } from 'react'
+import React, { useLayoutEffect, useRef, useMemo } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { gsap } from 'gsap'
 import useStore from '@store/useStore'
 import SplitText from '@shared/SplitText'
 import MagneticButton from '@shared/MagneticButton'
+import { PROJECTS as PROJECT_LIST } from '@data/projects'
 import styles from './ProjectDetail.module.scss'
-
-const PROJECTS = {
-    '01': { title: 'ZENITH', category: 'WEBGL / EXPERIENCE', color: '#ff3d2e' },
-    '02': { title: 'PULSE', category: 'INTERACTION / ART', color: '#ffffff' },
-    '03': { title: 'VEIL', category: 'FASHION / EDITORIAL', color: '#888888' },
-    '04': { title: 'TERRAIN', category: 'GENERATIVE / LANDSCAPE', color: '#ff3d2e' }
-}
 
 export default function ProjectDetail() {
     const { id } = useParams()
     const navigate = useNavigate()
-    const project = PROJECTS[id] || PROJECTS['01']
+    const project = useMemo(() => {
+        const numericId = Number(id)
+        return PROJECT_LIST.find(p => p.id === numericId) || PROJECT_LIST[0]
+    }, [id])
     const el = useRef()
     const setTransitioning = useStore((s) => s.setTransitioning)
 
@@ -50,7 +47,7 @@ export default function ProjectDetail() {
                 </button>
 
                 <div className={styles.header}>
-                    <span className="t-label reveal">{id} / {project.category}</span>
+                    <span className="t-label reveal">{String(project.id).padStart(2, '0')} / {project.category.toUpperCase()}</span>
                     <SplitText className={`${styles.title} t-display h1`}>
                         {project.title}
                     </SplitText>

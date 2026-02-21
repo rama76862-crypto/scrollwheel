@@ -49,7 +49,7 @@ const Contact = React.memo(() => {
     }, [isTransitioning])
 
     return (
-        <section ref={el} className={styles.contact}>
+        <section id="contact" ref={el} className={styles.contact}>
             <div className={styles.container}>
                 <div className={styles.content}>
                     <span className="t-label reveal-footer">GET IN TOUCH</span>
@@ -73,10 +73,14 @@ const Contact = React.memo(() => {
                         <div className={styles.socialGrid}>
                             {SOCIAL_LINKS.map((link, i) => (
                                 <div key={i} className={`${styles.socialItem} reveal-footer`}>
-                                    <MagneticButton className={styles.socialLink}>
-                                        <a href={link.href} target="_blank" rel="noopener noreferrer">
-                                            {link.label}
-                                        </a>
+                                    <MagneticButton
+                                        className={styles.socialLink}
+                                        href={link.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        ariaLabel={link.label}
+                                    >
+                                        {link.label}
                                     </MagneticButton>
                                 </div>
                             ))}

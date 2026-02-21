@@ -58,7 +58,7 @@ const Hero = React.memo(() => {
     }, [loaded, isTransitioning])
 
     return (
-        <section ref={el} className={styles.hero}>
+        <section id="hero" ref={el} className={styles.hero}>
             {/* Mobile Fallback Background */}
             {isMobile && (
                 <div className={styles.mobileFallback}>

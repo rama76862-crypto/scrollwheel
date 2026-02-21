@@ -52,3 +52,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </HelmetProvider>
     </React.StrictMode>
 )
+
+// no-op cleanup (boot overlay removed)

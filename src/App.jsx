@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, lazy } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import useStore from './store/useStore'
@@ -10,13 +10,13 @@ import Cursor from './components/ui/Cursor'
 import Nav from './components/ui/Nav'
 import PageTransition from './components/ui/PageTransition'
 
-// Lazy loaded sections
-const Hero = lazy(() => import('./components/sections/Hero'))
-const Work = lazy(() => import('./components/sections/Work'))
-const About = lazy(() => import('./components/sections/About'))
-const Contact = lazy(() => import('./components/sections/Contact'))
-const ProjectDetail = lazy(() => import('./components/sections/ProjectDetail'))
-const NotFound = lazy(() => import('./components/sections/NotFound'))
+// Sections (eager import to avoid blank screen during lazy load issues)
+import Hero from './components/sections/Hero'
+import Work from './components/sections/Work'
+import About from './components/sections/About'
+import Contact from './components/sections/Contact'
+import ProjectDetail from './components/sections/ProjectDetail'
+import NotFound from './components/sections/NotFound'
 
 function AppContent() {
     const setLoaded = useStore((s) => s.setLoaded)
@@ -48,7 +48,7 @@ function AppContent() {
     }, [setLoaded])
 
     return (
-        <main>
+        <main className="u-content">
             <Helmet>
                 <title>RAMA — Creative Developer</title>
                 <meta name="description" content="Award-winning creative developer specializing in WebGL experiences, interactive installations, and immersive digital products." />
@@ -65,20 +65,18 @@ function AppContent() {
             <Nav />
             <PageTransition />
 
-            <Suspense fallback={null}>
-                <Routes location={location} key={location.pathname}>
-                    <Route path="/" element={
-                        <>
-                            <Hero />
-                            <Work />
-                            <About />
-                            <Contact />
-                        </>
-                    } />
-                    <Route path="/project/:id" element={<ProjectDetail />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </Suspense>
+            <Routes location={location} key={location.pathname}>
+                <Route path="/" element={
+                    <>
+                        <Hero />
+                        <Work />
+                        <About />
+                        <Contact />
+                    </>
+                } />
+                <Route path="/project/:id" element={<ProjectDetail />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
 
             <Scene />
         </main>

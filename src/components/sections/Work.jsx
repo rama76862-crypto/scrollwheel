@@ -89,7 +89,7 @@ const Work = React.memo(() => {
     }, [isTransitioning, isMobile])
 
     return (
-        <section ref={sectionRef} className={styles.work}>
+        <section id="work" ref={sectionRef} className={styles.work}>
             <div className={styles.container}>
                 <div className={styles.left}>
                     <div className={`${styles.heading} work-heading`}>

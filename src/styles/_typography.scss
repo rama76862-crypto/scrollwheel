@@ -55,3 +55,15 @@ p,
 .p {
     @extend .text-body;
 }
+
+.t-display {
+    @extend .text-display;
+}
+
+.t-body {
+    @extend .text-body;
+}
+
+.t-label {
+    @extend .text-label;
+}

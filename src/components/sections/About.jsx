@@ -132,7 +132,7 @@ const About = React.memo(() => {
     }, [isTransitioning, isMobile])
 
     return (
-        <section ref={section} className={styles.about}>
+        <section id="about" ref={section} className={styles.about}>
             <div ref={marqueeWrap} className={styles.marqueeWrap}>
                 <div className={styles.marqueeStrip}>
                     <div ref={marqueeInner} className={styles.marqueeText}>

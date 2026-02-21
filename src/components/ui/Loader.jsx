@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState, useEffect } from 'react'
 import { gsap } from 'gsap'
 import useStore from '../../store/useStore'
 import styles from './Loader.module.scss'
@@ -15,6 +15,13 @@ export default function Loader() {
     const loaded = useStore((s) => s.loaded)
     const setLoaded = useStore((s) => s.setLoaded)
     const [isVisible, setIsVisible] = useState(true)
+
+    useEffect(() => {
+        const failSafe = setTimeout(() => {
+            setIsVisible(false)
+        }, 4000)
+        return () => clearTimeout(failSafe)
+    }, [])
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {

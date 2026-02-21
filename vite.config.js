@@ -1,16 +1,17 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 import glsl from 'vite-plugin-glsl'
 import path from 'path'
 
 export default defineConfig({
   plugins: [
-    react(),
     glsl({
       include: ['**/*.glsl', '**/*.vert', '**/*.frag'],
       compress: false,
     }),
   ],
+  esbuild: {
+    jsx: 'automatic',
+  },
   resolve: {
     alias: {
       '@': path.resolve(process.cwd(), './src'),

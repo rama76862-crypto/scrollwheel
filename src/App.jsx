@@ -3,16 +3,15 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { Helmet } from 'react-helmet-async'
 import useStore from './store/useStore'
 
-// Core UI Components
 import Scene from './components/webgl/Scene'
 import Loader from './components/ui/Loader'
 import Cursor from './components/ui/Cursor'
 import Nav from './components/ui/Nav'
 import PageTransition from './components/ui/PageTransition'
 
-// Sections (eager import to avoid blank screen during lazy load issues)
 import Hero from './components/sections/Hero'
 import Work from './components/sections/Work'
+import Process from './components/sections/Process'
 import About from './components/sections/About'
 import Contact from './components/sections/Contact'
 import ProjectDetail from './components/sections/ProjectDetail'
@@ -25,14 +24,12 @@ function AppContent() {
     const isTouch = useStore((s) => s.isTouch)
     const location = useLocation()
 
-    // Initialize and handle resize
     useEffect(() => {
         updateDevice()
         window.addEventListener('resize', updateDevice)
         return () => window.removeEventListener('resize', updateDevice)
     }, [updateDevice])
 
-    // Reset transition state on navigate
     useEffect(() => {
         const timer = setTimeout(() => {
             setTransitioning(false)
@@ -70,6 +67,7 @@ function AppContent() {
                     <>
                         <Hero />
                         <Work />
+                        <Process />
                         <About />
                         <Contact />
                     </>

@@ -1,0 +1,74 @@
+.loader {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-loader);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.panel {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: var(--color-bg);
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.top {
+    top: 0;
+}
+
+.bottom {
+    bottom: 0;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--page-gutter);
+}
+
+.logo {
+    position: absolute;
+    top: var(--page-gutter);
+    left: var(--page-gutter);
+    font-family: var(--font-body);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    color: var(--color-fg);
+}
+
+.counter {
+    font-family: var(--font-display);
+    font-size: 18vw;
+    line-height: 1;
+    color: var(--color-fg);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.05em;
+}
+
+.barWrap {
+    position: absolute;
+    bottom: var(--page-gutter);
+    left: var(--page-gutter);
+    right: var(--page-gutter);
+    height: 1px;
+    background: rgba(240, 237, 230, 0.1);
+}
+
+.bar {
+    width: 100%;
+    height: 100%;
+    background: var(--color-accent);
+    transform-origin: left;
+}

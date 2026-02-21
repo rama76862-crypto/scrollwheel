@@ -1,0 +1,154 @@
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: var(--page-gutter);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+    @media (max-width: 768px) {
+        justify-content: flex-start;
+        padding-top: 25vh;
+    }
+}
+
+.headline {
+    margin-bottom: var(--space-4);
+}
+
+.title {
+    font-size: clamp(48px, 12vw, 140px); // Larger relative on mobile
+    font-weight: 300;
+    font-style: italic;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: var(--color-fg);
+    text-transform: uppercase;
+}
+
+.subline {
+    font-size: clamp(10px, 2.5vw, 14px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+    opacity: 0.5;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    @media (max-width: 768px) {
+        position: relative;
+        bottom: auto;
+        margin-top: var(--space-8);
+        display: block;
+    }
+}
+
+.cta {
+    font-size: 13px;
+
+    @media (max-width: 768px) {
+        margin-top: var(--space-4);
+    }
+}
+
+.scroll {
+    position: relative;
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.scrollInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    transform: rotate(-90deg) translateX(40px);
+    transform-origin: bottom center;
+
+    span {
+        font-size: 10px;
+        letter-spacing: 0.3em;
+    }
+}
+
+.line {
+    width: 40px;
+    height: 1px;
+    background: var(--color-fg);
+    transform-origin: right;
+    animation: scrollLine 2s infinite var(--ease-lusion);
+}
+
+// Mobile Fallbacks
+.mobileFallback {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--color-bg);
+}
+
+.fallbackImage {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a09 100%);
+    filter: contrast(1.1) brightness(0.9);
+
+    // Simulating the WebGL look with a gradient + pseudo element
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 60% 40%, #ff3d2e33 0%, transparent 60%);
+    }
+}
+
+.grainOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+@keyframes scrollLine {
+    0% {
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    50% {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    50.1% {
+        transform: scaleX(1);
+        transform-origin: right;
+    }
+
+    100% {
+        transform: scaleX(0);
+        transform-origin: right;
+    }
+}

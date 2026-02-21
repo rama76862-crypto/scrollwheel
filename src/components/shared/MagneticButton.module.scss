@@ -1,0 +1,23 @@
+.button {
+    position: relative;
+    display: inline-flex;
+    padding: var(--space-4) var(--space-8);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: border-color 0.3s var(--ease-lusion);
+    will-change: transform;
+
+    &:hover {
+        border-color: var(--color-fg);
+    }
+}
+
+.inner {
+    display: inline-block;
+}

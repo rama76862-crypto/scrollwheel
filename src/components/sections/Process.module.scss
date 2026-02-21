@@ -1,0 +1,89 @@
+.process {
+    padding: var(--space-32) 0;
+    background: var(--color-bg-1);
+}
+
+.inner {
+    padding: 0 var(--page-gutter);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+}
+
+.labelRow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+}
+
+.header h2 {
+    color: var(--color-fg);
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.step {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: var(--space-8);
+    padding: var(--space-10) 0;
+    border-top: 1px solid var(--color-border);
+
+    &:last-child {
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.stepLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+}
+
+.stepNum {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-fg-muted);
+    letter-spacing: 0.1em;
+}
+
+.stepLine {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--color-accent);
+    transform-origin: left center;
+    transform: scaleX(0);
+}
+
+.stepContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.stepTitle {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-fg);
+    opacity: 0;
+}
+
+.stepDesc {
+    font-size: var(--text-base);
+    color: var(--color-fg-muted);
+    line-height: 1.7;
+    max-width: 55ch;
+    opacity: 0;
+}

@@ -1,0 +1,64 @@
+@use 'tokens' as *;
+@use 'reset' as *;
+@use 'typography' as *;
+
+// Global layout helpers
+.layout-full {
+    position: relative;
+    width: 100%;
+}
+
+.layout-page {
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
+}
+
+// WebGL canvas — fixed background
+.gl-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-canvas);
+    pointer-events: none;
+}
+
+// Main scroll container
+.scroll-container {
+    position: relative;
+    z-index: var(--z-content);
+}
+
+// Horizontal divider line
+.rule {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--color-border);
+}
+
+// Decorative accent line
+.accent-rule {
+    display: block;
+    width: 64px;
+    height: 2px;
+    background: var(--color-accent);
+}
+
+// Grid overlay (debugging, set to 0 opacity in prod)
+.debug-grid {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    padding: 0 var(--page-gutter);
+
+    >div {
+        background: rgba(255, 0, 0, 0.05);
+    }
+}

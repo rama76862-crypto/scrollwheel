@@ -1,0 +1,34 @@
+.notFound {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.title {
+    font-size: clamp(80px, 15vw, 240px);
+    color: var(--color-accent);
+}
+
+.link {
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-default);
+
+    &:hover {
+        background: var(--color-fg);
+        color: var(--color-bg);
+        border-color: var(--color-fg);
+    }
+}

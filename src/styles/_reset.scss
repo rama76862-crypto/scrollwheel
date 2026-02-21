@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: auto;
+    /* Lenis handles smooth scrolling */
+}
+
+body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: var(--color-accent);
+    color: var(--color-bg);
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 0;
+    /* Hidden on WebKit */
+}
+
+* {
+    scrollbar-width: thin;
+    /* Thin on Firefox */
+    scrollbar-color: var(--color-accent) transparent;
+}
+
+/* Keyboard Only Focus Styles */
+:focus {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+canvas {
+    display: block;
+    user-select: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}

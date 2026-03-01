@@ -7,6 +7,7 @@ const useStore = create((set) => ({
     isTransitioning: false,
     activeProject: null,
     cursorType: 'default',
+    menuOpen: false,
 
     // Device state
     isMobile: isMobile(),
@@ -18,6 +19,7 @@ const useStore = create((set) => ({
     setTransitioning: (isTransitioning) => set({ isTransitioning }),
     setActiveProject: (activeProject) => set({ activeProject }),
     setCursorType: (cursorType) => set({ cursorType }),
+    setMenuOpen: (menuOpen) => set({ menuOpen }),
 
     // Update device state
     updateDevice: () => set({

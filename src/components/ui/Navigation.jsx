@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { gsap } from 'gsap'
-import useStore from '@store/useStore'
+import useStore from '../../store/useStore'
 import styles from './Navigation.module.scss'
 
 const NAV_LINKS = [

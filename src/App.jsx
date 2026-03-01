@@ -56,7 +56,7 @@ class ErrorBoundary extends React.Component {
 import Scene from './components/webgl/Scene'
 import Loader from './components/ui/Loader'
 import Cursor from './components/ui/Cursor'
-import Nav from './components/ui/Nav'
+import Navigation from './components/ui/Navigation'
 import PageTransition from './components/ui/PageTransition'
 
 import Hero from './components/sections/Hero'
@@ -109,7 +109,7 @@ function AppContent() {
 
             <Loader />
             {!isTouch && <Cursor />}
-            <Nav />
+            <Navigation />
             <PageTransition />
 
             <Routes location={location} key={location.pathname}>

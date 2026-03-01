@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import useStore from '../../store/useStore'
 import SplitText from '../shared/SplitText'
 import styles from './About.module.scss'
+import aboutImg from '../../assets/images/about.png'
 
 /**
  * About Section
@@ -179,7 +180,7 @@ const About = React.memo(() => {
 
                     {!isMobile && (
                         <div ref={imageRef} className={styles.abstractImage}>
-                            <div className={styles.imgPlaceholder}>3D RENDER</div>
+                            <img src={aboutImg} alt="Abstract 3D Sculpture" className={styles.img} />
                         </div>
                     )}
                 </div>

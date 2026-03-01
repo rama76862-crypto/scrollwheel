@@ -132,15 +132,21 @@
 // ABSTRACT IMAGE
 .abstractImage {
     position: absolute;
-    top: -80px;
-    right: -5vw;
-    width: 40vw;
-    height: 60vh;
-    z-index: 2;
+    top: 50%;
+    right: 0;
+    width: 35vw;
+    height: 45vw;
+    transform: translateY(-50%);
+    z-index: -1;
     pointer-events: none;
 
-    @media (max-width: 1024px) {
-        display: none;
+    .img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(1) brightness(0.8) contrast(1.1);
+        opacity: 0.4;
+        transition: opacity 0.8s var(--ease-lusion);
     }
 }
 

@@ -14,6 +14,11 @@ export default function ProjectMesh({ activeProjectId, projects }) {
     const prevId = useRef(activeProjectId)
     const textures = useTexture(projects.map(p => p.image))
 
+    // Preload all textures to prevent transition jank
+    useEffect(() => {
+        projects.forEach(p => useTexture.preload(p.image))
+    }, [projects])
+
     const uniforms = useMemo(() => ({
         uTime: { value: 0 },
         uProgress: { value: 0 },

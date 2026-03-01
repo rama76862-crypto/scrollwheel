@@ -50,7 +50,7 @@ try {
     gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
     });
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
     // Attempt React Render
     const rootEl = document.getElementById('root');

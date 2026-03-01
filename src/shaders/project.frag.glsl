@@ -13,16 +13,16 @@ void main() {
     vec4 tex1 = texture2D(uTexture1, uv);
     vec4 tex2 = texture2D(uTexture2, uv);
     
-    // Noise-based threshold wipe
-    float noise = snoise(vec3(uv * 4.0, uTime * 0.1));
-    float threshold = uProgress * 1.2 - 0.1; // Expand range for full coverage
-    float mask = smoothstep(threshold - 0.1, threshold + 0.1, noise + uv.x * 0.2); // Subtle directional bias
+    // Noise-based threshold wipe (Optimized)
+    float noise = snoise(vec3(uv * 4.0, uTime * 0.05));
+    float threshold = uProgress * 1.2 - 0.1;
+    float mask = smoothstep(threshold - 0.1, threshold + 0.1, noise + uv.x * 0.2);
     
     vec4 finalColor = mix(tex1, tex2, mask);
     
-    // Vignette
-    float vig = 1.0 - distance(uv, vec2(0.5)) * 1.5;
-    finalColor.rgb *= vig;
+    // Vignette (Optimized)
+    float dist = length(uv - 0.5);
+    finalColor.rgb *= smoothstep(0.8, 0.4, dist);
     
     gl_FragColor = finalColor;
 }

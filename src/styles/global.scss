@@ -9,6 +9,7 @@
     position: relative;
     z-index: var(--z-base);
     width: 100%;
+    overflow-x: hidden;
 }
 
 .u-full {

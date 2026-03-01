@@ -52,31 +52,44 @@ export default function Loader() {
             })
 
             // Sequence
-            tl.to(counter.current, { opacity: 0, duration: 0.3 })
-            tl.to(logo.current, { opacity: 0, duration: 0.3 }, '<')
-            tl.to(bar.current, { opacity: 0, duration: 0.3 }, '<')
+            tl.to(counter.current, {
+                y: -20,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'back.in(1.7)'
+            })
+            tl.to(logo.current, {
+                opacity: 0,
+                duration: 0.4
+            }, '<0.2')
+            tl.to(bar.current, {
+                scaleX: 1.2,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'expo.inOut'
+            }, '<')
 
             tl.to(panelTop.current, {
-                scaleY: 0,
-                duration: 1.0,
+                yPercent: -100,
+                duration: 1.2,
                 ease: 'expo.inOut'
             }, 'wipe')
 
             tl.to(panelBottom.current, {
-                scaleY: 0,
-                duration: 1.0,
+                yPercent: 100,
+                duration: 1.2,
                 ease: 'expo.inOut'
             }, 'wipe')
 
-            // Ensure store state is updated if we hit 100 first
+            // Ensure store state is updated
             tl.add(() => {
                 setLoaded(true)
-            }, 'wipe+=0.8')
+            }, 'wipe+=0.6')
 
-            // Unmount from DOM after wipe
+            // Unmount from DOM
             tl.add(() => {
                 setIsVisible(false)
-            }, 'wipe+=1.0')
+            }, 'wipe+=1.2')
         }
     }, [progress, loaded, setLoaded])
 

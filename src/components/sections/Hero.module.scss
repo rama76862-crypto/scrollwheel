@@ -16,33 +16,113 @@
     flex-direction: column;
     justify-content: center;
     position: relative;
+    padding: var(--space-20) 0;
 
     @media (max-width: 768px) {
         justify-content: flex-start;
-        padding-top: 25vh;
+        padding-top: 15vh;
+    }
+}
+
+.metadata {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    gap: var(--space-12);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--color-fg-muted);
+    text-transform: uppercase;
+
+    .metaItem {
+        display: flex;
+        gap: 0.5em;
+
+        span:first-child {
+            color: var(--color-accent);
+            opacity: 0.8;
+        }
     }
 }
 
 .headline {
-    margin-bottom: var(--space-4);
+    margin: var(--space-8) 0;
 }
 
 .title {
-    font-size: clamp(48px, 12vw, 140px); // Larger relative on mobile
+    font-size: clamp(48px, 12vw, 160px);
     font-weight: 300;
     font-style: italic;
-    line-height: 0.9;
-    letter-spacing: -0.05em;
+    line-height: 0.85;
+    letter-spacing: -0.06em;
     color: var(--color-fg);
     text-transform: uppercase;
 }
 
+.midRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: var(--space-4);
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-4);
+    }
+}
+
 .subline {
-    font-size: clamp(10px, 2.5vw, 14px);
-    letter-spacing: 0.2em;
+    font-size: clamp(10px, 1.5vw, 13px);
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--color-fg);
     opacity: 0.5;
+}
+
+.services {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--color-fg-muted);
+
+    .dot {
+        width: 3px;
+        height: 3px;
+        background: var(--color-accent);
+        border-radius: 50%;
+    }
+}
+
+.ornaments {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.2;
+
+    .lineV {
+        position: absolute;
+        left: 20%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(to bottom, transparent, var(--color-fg), transparent);
+    }
+
+    .lineH {
+        position: absolute;
+        top: 30%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--color-fg), transparent);
+    }
 }
 
 .bottom {

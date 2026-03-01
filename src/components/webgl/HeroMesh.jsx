@@ -15,9 +15,9 @@ export default function HeroMesh() {
     const uniforms = useMemo(() => ({
         uTime: { value: 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
+        uDistortion: { value: 0.8 },
+        uOpacity: { value: 1 },
         uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-        uDistortion: { value: 0.12 },
-        uOpacity: { value: 0 }
     }), [])
 
     useFrame((state, delta) => {

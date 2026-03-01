@@ -11,6 +11,10 @@ import styles from './Hero.module.scss'
  */
 const Hero = React.memo(() => {
     const el = useRef()
+    const headline = useRef()
+    const subline = useRef()
+    const cta = useRef()
+    const scroll = useRef()
     const metadata = useRef()
     const services = useRef()
     const ornaments = useRef()
@@ -74,6 +78,14 @@ const Hero = React.memo(() => {
                 <div className={styles.lineV} />
                 <div className={styles.lineH} />
             </div>
+
+            {/* Mobile Fallback Background */}
+            {isMobile && (
+                <div className={styles.mobileFallback}>
+                    <div className={styles.grainOverlay} />
+                    <div className={styles.fallbackImage} />
+                </div>
+            )}
 
             <div className={styles.inner}>
                 <div ref={metadata} className={styles.metadata}>

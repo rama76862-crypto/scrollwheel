@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import useStore from '../../store/useStore'
 import styles from './MagneticButton.module.scss'
@@ -10,6 +10,7 @@ import styles from './MagneticButton.module.scss'
 export default function MagneticButton({
     children,
     className = '',
+    variant = 'outline',
     href,
     onClick,
     target,
@@ -18,11 +19,21 @@ export default function MagneticButton({
 }) {
     const el = useRef()
     const inner = useRef()
+    const glitchRef = useRef()
     const setCursorType = useStore((s) => s.setCursorType)
-    const isTouch = useStore((s) => s.isTouch)
+    const [isTouch, setIsTouch] = useState(false)
 
     useEffect(() => {
-        if (isTouch) return
+        setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0)
+    }, [])
+
+    useEffect(() => {
+        if (isTouch || !el.current) return
+
+        const xTo = gsap.quickTo(el.current, "x", { duration: 1, ease: "elastic.out(1, 0.3)" })
+        const yTo = gsap.quickTo(el.current, "y", { duration: 1, ease: "elastic.out(1, 0.3)" })
+        const xToInner = gsap.quickTo(inner.current, "x", { duration: 1, ease: "elastic.out(1, 0.3)" })
+        const yToInner = gsap.quickTo(inner.current, "y", { duration: 1, ease: "elastic.out(1, 0.3)" })
 
         const handleMove = (e) => {
             const { clientX, clientY } = e

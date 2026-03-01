@@ -21,28 +21,37 @@
 
 .ring {
     position: absolute;
-    top: -16px;
-    left: -16px;
-    width: 32px;
-    height: 32px;
+    top: -20px;
+    left: -20px;
+    width: 40px;
+    height: 40px;
     border: 1px solid var(--color-fg);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.3s var(--ease-out-expo), background 0.3s ease;
 }
 
 .label {
-    position: absolute;
-    font-family: var(--font-body);
-    font-size: 8px;
+    font-family: var(--font-mono);
+    font-size: 7px;
+    font-weight: 700;
     letter-spacing: 0.1em;
     color: var(--color-bg);
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 // Variants
 .view .ring {
-    transform: scale(2.5);
+    transform: scale(2);
     background: var(--color-fg);
     border-color: var(--color-fg);
+
+    .label {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

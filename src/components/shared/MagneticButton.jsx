@@ -30,56 +30,63 @@ export default function MagneticButton({
             const x = clientX - (left + width / 2)
             const y = clientY - (top + height / 2)
 
-            gsap.to(el.current, {
-                x: x * 0.3,
-                y: y * 0.3,
-                duration: 0.4,
-                ease: 'power2.out',
-            })
-            gsap.to(inner.current, {
-                x: x * 0.1,
-                y: y * 0.1,
-                duration: 0.4,
-                ease: 'power2.out',
-            })
+            xTo(x * 0.35)
+            yTo(y * 0.35)
+            xToInner(x * 0.15)
+            yToInner(y * 0.15)
         }
 
         const handleLeave = () => {
-            gsap.to([el.current, inner.current], {
-                x: 0,
-                y: 0,
-                duration: 0.6,
-                ease: 'elastic.out(1, 0.3)',
+            xTo(0)
+            yTo(0)
+            xToInner(0)
+            yToInner(0)
+            setCursorType('default')
+            gsap.to(glitchRef.current, { skewX: 0, skewY: 0, duration: 0.3 })
+        }
+
+        const handleEnter = () => {
+            setCursorType('view')
+            gsap.to(glitchRef.current, {
+                skewX: () => (Math.random() - 0.5) * 15,
+                skewY: () => (Math.random() - 0.5) * 5,
+                duration: 0.08,
+                repeat: 3,
+                yoyo: true,
+                ease: 'power3.inOut'
             })
         }
 
-        const currentEl = el.current
-        currentEl.addEventListener('mousemove', handleMove)
-        currentEl.addEventListener('mouseleave', handleLeave)
+        const element = el.current
+        element.addEventListener("mousemove", handleMove)
+        element.addEventListener("mouseleave", handleLeave)
+        element.addEventListener("mouseenter", handleEnter)
 
         return () => {
-            if (currentEl) {
-                currentEl.removeEventListener('mousemove', handleMove)
-                currentEl.removeEventListener('mouseleave', handleLeave)
-            }
+            element.removeEventListener("mousemove", handleMove)
+            element.removeEventListener("mouseleave", handleLeave)
+            element.removeEventListener("mouseenter", handleEnter)
         }
-    }, [isTouch])
+    }, [isTouch, setCursorType])
 
     const Tag = href ? 'a' : 'button'
 
     return (
         <Tag
             ref={el}
-            className={`${styles.button} ${className}`}
             href={href}
             onClick={onClick}
             target={href ? target : undefined}
             rel={href ? rel : undefined}
             aria-label={ariaLabel}
-            onMouseEnter={() => !isTouch && setCursorType('view')}
-            onMouseLeave={() => !isTouch && setCursorType('default')}
+            className={`${styles.btn} ${styles[variant]} ${className}`}
         >
-            <span ref={inner} className={styles.inner}>{children}</span>
+            <div ref={inner} className={styles.inner}>
+                <div ref={glitchRef} className={styles.glitchWrapper}>
+                    <div className={styles.text}>{children}</div>
+                </div>
+                <div className={styles.fill} />
+            </div>
         </Tag>
     )
 }

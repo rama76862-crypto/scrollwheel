@@ -102,8 +102,14 @@ const Work = React.memo(() => {
                                 key={project.id}
                                 to={`/project/${project.id}`}
                                 className={`${styles.row} ${(hoveredId === project.id || activeScrollId === project.id) ? styles.isHovered : ''}`}
-                                onMouseEnter={() => handleMouseEnter(project.id)}
-                                onMouseLeave={handleMouseLeave}
+                                onMouseEnter={() => {
+                                    handleMouseEnter(project.id)
+                                    setCursorType('view')
+                                }}
+                                onMouseLeave={() => {
+                                    handleMouseLeave()
+                                    setCursorType('default')
+                                }}
                             >
                                 <div className={styles.rowInner}>
                                     {isMobile && (

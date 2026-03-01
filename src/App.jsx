@@ -58,6 +58,7 @@ import Loader from './components/ui/Loader'
 import Cursor from './components/ui/Cursor'
 import Navigation from './components/ui/Navigation'
 import PageTransition from './components/ui/PageTransition'
+import Grain from './components/ui/Grain'
 
 import Hero from './components/sections/Hero'
 import Work from './components/sections/Work'
@@ -125,8 +126,17 @@ function AppContent() {
                 <Route path="/project/:id" element={<ProjectDetail />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
+            <div className="gl-canvas">
+                <Scene />
+            </div>
 
-            <Scene />
+            {/* Global SVG Filters */}
+            <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+                <filter id="distortion">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.01 0.1" numOctaves="1" result="warp" />
+                    <feDisplacementMap in="SourceGraphic" in2="warp" scale="15" xChannelSelector="R" yChannelSelector="G" />
+                </filter>
+            </svg>
         </main>
     )
 }

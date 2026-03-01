@@ -1,1 +1,8 @@
 node_modules
+dist
+.vite
+*.log
+*.tmp
+.DS_Store
+.env*
+build_*.txt

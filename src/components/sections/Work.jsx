@@ -48,7 +48,7 @@ const Work = React.memo(() => {
                     start: 'top top',
                     end: '+=200%',
                     pin: true,
-                    scrub: 1,
+                    scrub: 0.4,
                     onUpdate: (self) => {
                         const progress = self.progress;
                         const index = Math.min(

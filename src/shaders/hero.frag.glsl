@@ -15,14 +15,15 @@ void main() {
     float dist = distance(uv, mouseP);
     float ripple = smoothstep(0.4, 0.0, dist);
     
-    // Base color or texture logic
-    vec2 distortedUv = uv + ripple * uDistortion * snoise(vec3(uv * 5.0, uTime * 0.1));
+    // Base noise and distortion
+    float noiseBase = snoise(vec3(uv * 5.0, uTime * 0.1));
+    vec2 distortedUv = uv + ripple * uDistortion * noiseBase;
     
-    // Chromatic Aberration at peaks
+    // Chromatic Aberration (Cheaper approximation)
     float offset = ripple * 0.003;
-    float r = snoise(vec3((distortedUv + vec2(offset, 0.0)) * 3.0, uTime * 0.1));
-    float g = snoise(vec3(distortedUv * 3.0, uTime * 0.1));
-    float b = snoise(vec3((distortedUv - vec2(offset, 0.0)) * 3.0, uTime * 0.1));
+    float r = snoise(vec3((distortedUv + vec2(offset, 0.0)) * 3.0, uTime * 0.05));
+    float g = noiseBase * 0.5 + 0.5; // Reuse base noise for green channel
+    float b = snoise(vec3((distortedUv - vec2(offset, 0.0)) * 3.0, uTime * 0.05));
     
     vec3 color = mix(vec3(0.04), vec3(0.08, 0.07, 0.07), vec3(r, g, b));
     

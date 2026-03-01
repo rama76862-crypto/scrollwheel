@@ -89,6 +89,7 @@
     height: 60vw;
     margin-bottom: var(--space-4);
     overflow: hidden;
+    will-change: transform;
     background: var(--color-mid);
 
     .img {

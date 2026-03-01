@@ -27,9 +27,6 @@ export default function HeroMesh() {
 
         uniforms.uTime.value += delta
         uniforms.uMouse.value.copy(mouse.current)
-
-        // Request a new frame because uniforms have changed
-        state.invalidate()
     })
 
     return (
